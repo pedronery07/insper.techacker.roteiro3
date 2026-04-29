@@ -8,6 +8,9 @@ env:
   CI: true
   PYTHON_VERSION: 3.12
 
+permissions:
+  contents: write
+
 # Jobs to run
 jobs:
      
