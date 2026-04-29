@@ -1,8 +1,8 @@
-site_name: Template de Entrega
-site_author: Sandmann, H.
-site_url: https://hsandmann.github.io/documentation.template
-repo_url: https://github.com/hsandmann/documentation.template
-repo_name: github/documentation.template
+site_name: Techacker - Roteiro 3
+site_author: Marcelo Poltronieri, Pedro Nery, Raymond Lisbona
+site_url: https://pedronery07.github.io/insper.techacker.roteiro3/
+repo_url: https://github.com/pedronery07/insper.techacker.roteiro3
+repo_name: github/insper.techacker.roteiro3
 
 theme:
   name: material
@@ -124,28 +124,7 @@ plugins:
         - "$"
         - ">"
 
-# mkdocs-jupyter
-  - mkdocs-jupyter:
-      execute: false
-      allow_errors: false
-
-extra_javascript:
-  - https://unpkg.com/mathjax/es5/tex-mml-chtml.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  - https://fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js
-  - https://fastly.jsdelivr.net/npm/echarts/dist/echarts.min.js
-
-  # Para a implementação do mkdocs-jupyter
-  - javascripts/mathjax.js
-
 nav:
   - Home: index.md
-  - This documentation: ./thisdocumentation/index.md
-  - Roteiros:
-    - Roteiro 1: ./roteiro1/index.md
-    - Roteiro 2: ./roteiro2/index.md
-    - Roteiro 3: ./roteiro3/index.md
-    - Roteiro 4: ./roteiro4/index.md
-    - Notebook 1: ./notebook1/ex1_data.ipynb
-  - Projeto: ./projeto/index.md
+  - Relatório: ./relatorio/index.md
+  - Sobre: ./sobre/index.md

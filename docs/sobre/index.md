@@ -1,3 +1,6 @@
+## Esclarecimento
+
+Este relatório foi construído com base no template de Mkdocs criado pelo professor do Insper Humberto Sandmann. A seguir, seguem algumas observações incluídas por ele em seu repositório.
 
 ## Pré-requisitos
 
