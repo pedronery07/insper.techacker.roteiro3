@@ -111,7 +111,6 @@ Foram aplicadas as seguintes medidas de hardening:
 - Bloqueio de ping ICMP na WAN.
 - Bloqueio da porta `22` TCP, impedindo acesso SSH direto pela WAN.
 - Desativação de acessos administrativos diretos pela WAN.
-- Ativação do bloqueio de redes privadas na interface WAN.
 - Ativação do bloqueio de redes bogon na interface WAN.
 - Registro de logs nas regras de bloqueio relevantes.
 
