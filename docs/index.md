@@ -12,10 +12,6 @@
 3. Raymond Lisbona
 
 
-## Exemplo de vídeo
-
-<iframe width="100%" height="470" src="https://www.youtube.com/embed/3574AYQml8w" allowfullscreen></iframe>
-
 ## Referências
 
 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/){:target='_blank'}

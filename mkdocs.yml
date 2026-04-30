@@ -127,4 +127,5 @@ plugins:
 nav:
   - Home: index.md
   - Relatório: ./relatorio/index.md
+  - Demonstração Prática: ./demonstracao/index.md
   - Sobre: ./sobre/index.md

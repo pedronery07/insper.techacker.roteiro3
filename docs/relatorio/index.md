@@ -13,6 +13,21 @@ Foram considerados os seguintes objetivos principais:
 - Priorizar tráfego sensível com regras de QoS.
 - Validar a conectividade por testes externos e internos.
 
+### 1.1 Estrutura do ambiente
+
+Para a execução do roteiro, o grupo recebeu:
+
+• 1 Firewall PfSense instalado em máquina física ou virtual;
+
+• 1 Host Servidor (Linux);
+
+• 1 Máquina cliente (opcional, para testes de acesso e VPN).
+
+<p align="center"><img src="img/ambiente.jpeg" alt="Estrutura do ambiente" width="600"/></p>
+/// caption
+Imagem tirada em laboratório do Firewall PfSense e do Host Servidor
+///
+
 ## 2. Topologia de Rede
 
 A infraestrutura foi montada com uma rede segmentada, separando o tráfego externo, recebido pela interface WAN do pfSense, da rede de servidores internos, conectada à interface LAN.
