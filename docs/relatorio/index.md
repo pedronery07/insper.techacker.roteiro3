@@ -58,7 +58,7 @@ flowchart TB
 | --- | --- | --- |
 | pfSense | WAN | `192.168.20.171` |
 | pfSense | LAN / Gateway | `10.0.80.1/24` |
-| Servidor | LAN | `10.0.80.9` |
+| Servidor | LAN | `10.0.80.3` |
 | Rede da VPN | Túnel virtual | `10.0.90.0/24` |
 
 !!! note "Evidência: interfaces do sistema"
@@ -67,14 +67,14 @@ flowchart TB
 
 ## 4. Configuração de NAT e Firewall
 
-Para disponibilizar os serviços internos à rede externa, foram configuradas regras de Port Forward no pfSense. Essas regras encaminham conexões recebidas na interface WAN para o servidor interno `10.0.80.9`.
+Para disponibilizar os serviços internos à rede externa, foram configuradas regras de Port Forward no pfSense. Essas regras encaminham conexões recebidas na interface WAN para o servidor interno `10.0.80.3`.
 
 ### 4.1 Redirecionamento de Portas
 
 | Serviço | Porta externa | Protocolo | Destino interno | Finalidade |
 | --- | --- | --- | --- | --- |
-| WordPress | `80` | TCP | `10.0.80.9:80` | Publicação do site WordPress |
-| Nextcloud | `8000` | TCP | `10.0.80.9:8000` | Publicação do serviço Nextcloud |
+| WordPress | `80` | TCP | `10.0.80.3:80` | Publicação do site WordPress |
+| Nextcloud | `8000` | TCP | `10.0.80.3:8000` | Publicação do serviço Nextcloud |
 
 !!! note "Evidência: regras de NAT"
 
@@ -165,7 +165,7 @@ Os testes foram separados entre acessos externos, realizados sem VPN, e acessos 
 
 | Teste | Comando ou endereço | Resultado esperado |
 | --- | --- | --- |
-| Ping ao servidor interno | `ping 10.0.80.9` | Respostas ICMP pelo túnel VPN |
+| Ping ao servidor interno | `ping 10.0.80.3` | Respostas ICMP pelo túnel VPN |
 | Acesso ao gateway pfSense | `http://10.0.80.1` | Dashboard acessível pela VPN |
 
 !!! note "Evidência: ping via túnel"
