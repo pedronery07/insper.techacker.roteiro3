@@ -18,23 +18,39 @@ Foram considerados os seguintes objetivos principais:
 A infraestrutura foi montada com uma rede segmentada, separando o tráfego externo, recebido pela interface WAN do pfSense, da rede de servidores internos, conectada à interface LAN.
 
 ```mermaid
-flowchart LR
-    internet["Rede externa / WAN<br/>192.168.20.0/24"]
-    pfsense["pfSense<br/>WAN: 192.168.20.171<br/>LAN: 10.0.80.1/24"]
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "basis"}, "themeVariables": {"fontSize": "16px"}} }%%
+flowchart TB
+    external["Internet / Usuário Externo"]
+    wan["WAN pfSense<br/>192.168.20.171<br/>Rede externa: 192.168.20.0/24"]
+    pfsense["pfSense Firewall<br/>LAN/Gateway: 10.0.80.1/24"]
+    nat["Port Forward / NAT<br/>:80 -> 10.0.80.9:80<br/>:8000 -> 10.0.80.9:8000"]
     lan["Rede LAN<br/>10.0.80.0/24"]
-    server["Servidor de Marketing<br/>10.0.80.9<br/>WordPress + Nextcloud"]
-    vpn["Clientes VPN<br/>10.0.90.0/24"]
+    server["Servidor<br/>10.0.80.9<br/>WordPress :80<br/>Nextcloud :8000"]
+    remote["Cliente remoto"]
+    vpn["OpenVPN<br/>Túnel: 10.0.90.0/24"]
+    rules["Hardening e QoS<br/>Bloqueia ICMP na WAN<br/>Bloqueia SSH :22 na WAN<br/>Sem admin direto pela WAN<br/>Logs ativos<br/>QoS para VPN e serviços web"]
 
-    internet --> pfsense
+    external -->|"HTTP :80 / :8000"| wan
+    wan --> pfsense
+    pfsense --> nat
+    nat --> server
     pfsense --> lan
     lan --> server
-    vpn -->|OpenVPN| pfsense
-    pfsense -->|Acesso seguro| server
+
+    remote -->|"Túnel seguro"| vpn
+    vpn -->|"Acesso à LAN"| pfsense
+    pfsense -.-> rules
+
+    classDef endpoint fill:#111827,stroke:#6b8cff,color:#f8fafc,stroke-width:1.5px
+    classDef firewall fill:#172554,stroke:#93c5fd,color:#f8fafc,stroke-width:2px
+    classDef service fill:#1e293b,stroke:#38bdf8,color:#f8fafc,stroke-width:1.5px
+    classDef control fill:#312e81,stroke:#c4b5fd,color:#f8fafc,stroke-width:1.5px
+
+    class external,wan,remote,vpn endpoint
+    class pfsense firewall
+    class lan,server,nat service
+    class rules control
 ```
-
-!!! note "Evidência: desenho da rede"
-
-    Inserir a foto do quadro branco com o esquema da rede ou um desenho digital da topologia.
 
 ## 3. Endereçamento IP
 
@@ -42,7 +58,7 @@ flowchart LR
 | --- | --- | --- |
 | pfSense | WAN | `192.168.20.171` |
 | pfSense | LAN / Gateway | `10.0.80.1/24` |
-| Servidor de Marketing | LAN | `10.0.80.9` |
+| Servidor | LAN | `10.0.80.9` |
 | Rede da VPN | Túnel virtual | `10.0.90.0/24` |
 
 !!! note "Evidência: interfaces do sistema"
