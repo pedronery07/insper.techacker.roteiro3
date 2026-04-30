@@ -23,9 +23,9 @@ flowchart TB
     external["Internet / Usuário Externo"]
     wan["WAN pfSense<br/>192.168.20.171<br/>Rede externa: 192.168.20.0/24"]
     pfsense["pfSense Firewall<br/>LAN/Gateway: 10.0.80.1/24"]
-    nat["Port Forward / NAT<br/>:80 -> 10.0.80.9:80<br/>:8000 -> 10.0.80.9:8000"]
+    nat["Port Forward / NAT<br/>:80 -> 10.0.80.3:80<br/>:8000 -> 10.0.80.3:8000"]
     lan["Rede LAN<br/>10.0.80.0/24"]
-    server["Servidor<br/>10.0.80.9<br/>WordPress :80<br/>Nextcloud :8000"]
+    server["Servidor<br/>10.0.80.3<br/>WordPress :80<br/>Nextcloud :8000"]
     remote["Cliente remoto"]
     vpn["OpenVPN<br/>Túnel: 10.0.90.0/24"]
     rules["Hardening e QoS<br/>Bloqueia ICMP na WAN<br/>Bloqueia SSH :22 na WAN<br/>Sem admin direto pela WAN<br/>Logs ativos<br/>QoS para VPN e serviços web"]
@@ -170,7 +170,7 @@ Os testes foram separados entre acessos externos, realizados sem VPN, e acessos 
 
 !!! note "Evidência: ping via túnel"
 
-    Inserir o print do terminal mostrando sucesso no `ping 10.0.80.9` através da VPN.
+    Inserir o print do terminal mostrando sucesso no `ping 10.0.80.3` através da VPN.
 
 ## 8. Conclusão
 
