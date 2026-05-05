@@ -1,0 +1,57 @@
+:root > * {
+  --md-mermaid-edge-color: #93c5fd;
+  --md-mermaid-label-bg-color: #020617;
+  --md-mermaid-label-fg-color: #ffffff;
+  --md-mermaid-node-bg-color: #111827;
+  --md-mermaid-node-fg-color: #ffffff;
+}
+
+.md-typeset .mermaid {
+  --md-mermaid-edge-color: #93c5fd;
+  --md-mermaid-label-bg-color: #020617;
+  --md-mermaid-label-fg-color: #ffffff;
+  --md-mermaid-node-bg-color: #111827;
+  --md-mermaid-node-fg-color: #ffffff;
+  background: #020617 !important;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #ffffff !important;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.md-typeset .mermaid svg {
+  background: #020617 !important;
+}
+
+.md-typeset .mermaid .label,
+.md-typeset .mermaid .nodeLabel,
+.md-typeset .mermaid .edgeLabel,
+.md-typeset .mermaid .edgeLabel span,
+.md-typeset .mermaid .edgeLabel .label {
+  color: #ffffff !important;
+}
+
+.md-typeset .mermaid text,
+.md-typeset .mermaid .label text,
+.md-typeset .mermaid .nodeLabel text,
+.md-typeset .mermaid .edgeLabel text {
+  fill: #ffffff !important;
+}
+
+.md-typeset .mermaid .edgeLabel,
+.md-typeset .mermaid .edgeLabel span,
+.md-typeset .mermaid .edgeLabel .label {
+  background-color: #020617 !important;
+}
+
+.md-typeset .mermaid .labelBkg,
+.md-typeset .mermaid .edgeLabel rect {
+  background-color: #020617 !important;
+  fill: #020617 !important;
+}
+
+.md-typeset .mermaid .flowchart-link,
+.md-typeset .mermaid marker path {
+  stroke: #93c5fd !important;
+}

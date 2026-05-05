@@ -23,17 +23,67 @@ Para a execução do roteiro, o grupo recebeu:
 
 • 1 Máquina cliente (opcional, para testes de acesso e VPN).
 
+<details>
+<summary><strong>Firewall PfSense e Host Servidor usados em laboratório</strong></summary>
+
 <p align="center"><img src="img/ambiente.jpeg" alt="Estrutura do ambiente" width="600"/></p>
-/// caption
-Imagem tirada em laboratório do Firewall PfSense e do Host Servidor
-///
+
+</details>
+
+### 1.2 Restabelecimento do pfSense para Factory Defaults
+
+Antes de iniciar a configuração da rede, o equipamento pfSense foi restaurado para as configurações de fábrica para garantir um ambiente limpo.
+
+O procedimento realizado foi:
+
+- Selecionar a opção `4) Reset to factory defaults` no menu principal do console.
+- Confirmar a restauração respondendo `y` à mensagem de confirmação.
+- Ignorar a configuração de VLANs, respondendo `n` quando solicitado.
+- Atribuir as interfaces de rede manualmente:
+  - `WAN` -> `igc0`
+  - `LAN` -> `igc1`
+  - `OPT1` -> `igc2`
+  - `OPT2` -> `igc3`
+- Confirmar a atribuição de interfaces e permitir que o pfSense reinicie.
+
+Após o reboot, a interface LAN passou a responder na rede interna padrão e o acesso ao webConfigurator foi verificado pelo endereço `https://192.168.1.1`.
+
+<details>
+<summary><strong>Evidência: restauração para factory defaults</strong></summary>
+
+<p align="center"><img src="img/reset1_ambiente.png" alt="Reset 1" /></p>
+
+</details>
+
+<details>
+<summary><strong>Evidência: atribuição de interfaces</strong></summary>
+
+<p align="center"><img src="img/reset2_ambiente.png" alt="Reset 2" /></p>
+
+</details>
+
+<details>
+<summary><strong>Evidência: Tela de login do pfSense no IP 192.168.1.1 (factory default)</strong></summary>
+
+<p align="center"><img src="img/login_pfsense.png" alt="Login pfSense" /></p>
+
+</details>
+
+O login no pfSense foi realizado com sucesso usando as credenciais padrão `admin` / `pfsense`. Após autenticar, a interface LAN foi reconfigurada para o endereço `10.0.80.1/24`, alinhando o gateway ao plano de endereçamento interno do projeto.
+
+<details>
+<summary><strong>Evidência: reconfiguração do IP para 10.0.80.1/24</strong></summary>
+
+<p align="center"><img src="img/reconfig_ip_lan.png" alt="Reconfiguração IP LAN" /></p>
+
+</details>
 
 ## 2. Topologia de Rede
 
 A infraestrutura foi montada com uma rede segmentada, separando o tráfego externo, recebido pela interface WAN do pfSense, da rede de servidores internos, conectada à interface LAN.
 
 ```mermaid
-%%{init: {"flowchart": {"htmlLabels": true, "curve": "basis"}, "themeVariables": {"fontSize": "16px"}} }%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel,.nodeLabel *,.label,.label *,.edgeLabel,.edgeLabel *{color:#ffffff!important}.label text,text{fill:#ffffff!important}.edgeLabel,.edgeLabel span,.edgeLabel div,.edgeLabel p,.labelBkg{background-color:#020617!important;fill:#020617!important}.flowchart-link,marker path{stroke:#93c5fd!important}", "flowchart": {"htmlLabels": true, "curve": "basis"}, "themeVariables": {"background": "#020617", "edgeLabelBackground": "#020617", "fontFamily": "Arial, sans-serif", "fontSize": "16px", "lineColor": "#93c5fd", "nodeTextColor": "#ffffff", "primaryTextColor": "#ffffff", "textColor": "#ffffff"}} }%%
 flowchart TB
     external["Internet / Usuário Externo"]
     wan["WAN pfSense<br/>192.168.20.171<br/>Rede externa: 192.168.20.0/24"]
@@ -56,10 +106,12 @@ flowchart TB
     vpn -->|"Acesso à LAN"| pfsense
     pfsense -.-> rules
 
-    classDef endpoint fill:#111827,stroke:#6b8cff,color:#f8fafc,stroke-width:1.5px
-    classDef firewall fill:#172554,stroke:#93c5fd,color:#f8fafc,stroke-width:2px
-    classDef service fill:#1e293b,stroke:#38bdf8,color:#f8fafc,stroke-width:1.5px
-    classDef control fill:#312e81,stroke:#c4b5fd,color:#f8fafc,stroke-width:1.5px
+    linkStyle default stroke:#93c5fd,stroke-width:2.4px,color:#ffffff
+
+    classDef endpoint fill:#111827,stroke:#93c5fd,color:#ffffff,stroke-width:1.6px
+    classDef firewall fill:#1e3a8a,stroke:#bfdbfe,color:#ffffff,stroke-width:2px
+    classDef service fill:#164e63,stroke:#67e8f9,color:#ffffff,stroke-width:1.6px
+    classDef control fill:#4c1d95,stroke:#ddd6fe,color:#ffffff,stroke-width:1.6px
 
     class external,wan,remote,vpn endpoint
     class pfsense firewall
