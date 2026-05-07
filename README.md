@@ -22,7 +22,7 @@ python3 -m pip install -r requirements.txt --upgrade
 
 ## Deployment
 
-O material utiliza o [mkdocs](https://www.mkdocs.org/){:target="_blank"} para gerar a documentação. Para visualizar a documentação, execute o comando:
+O material utiliza o [mkdocs](https://www.mkdocs.org/) para gerar a documentação. Para visualizar a documentação, execute o comando:
 
 ``` shell
 mkdocs serve -o
@@ -34,4 +34,4 @@ Para subir ao GitHub Pages, execute o comando:
 mkdocs gh-deploy
 ```
 
-A documentação contida neste repositório se encontra neste [link](https://pedronery07.github.io/insper.techacker.roteiro3/){:target="_blank"}
+A documentação contida neste repositório se encontra neste [link](https://pedronery07.github.io/insper.techacker.roteiro3/)
