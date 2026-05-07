@@ -128,9 +128,12 @@ flowchart TB
 | Servidor | LAN | `10.0.80.3` |
 | Rede da VPN | Túnel virtual | `10.0.90.0/24` |
 
-!!! note "Evidência: interfaces do sistema"
+<details>
+<summary><strong>Evidência: interfaces do sistema</strong></summary>
 
-    Inserir o print do dashboard do pfSense mostrando o widget **Interfaces**, com WAN e LAN visíveis.
+<p align="center"><img src="img/dashboard_pfsense.png" alt="Dashboard pfSense" /></p>
+
+</details>
 
 ## 4. Configuração de NAT e Firewall
 
@@ -143,9 +146,12 @@ Para disponibilizar os serviços internos à rede externa, foram configuradas re
 | WordPress | `80` | TCP | `10.0.80.3:80` | Publicação do site WordPress |
 | Nextcloud | `8000` | TCP | `10.0.80.3:8000` | Publicação do serviço Nextcloud |
 
-!!! note "Evidência: regras de NAT"
+<details>
+<summary><strong>Evidência: Regras de NAT</strong></summary>
 
-    Inserir o print do menu **Firewall > NAT > Port Forward** com as duas regras visíveis.
+<p align="center"><img src="img/regras_nat.png" alt="Regras de NAT" /></p>
+
+</details>
 
 ## 5. Configuração de VPN com OpenVPN
 
@@ -159,13 +165,12 @@ Foi configurada uma VPN do tipo Remote Access para permitir que administradores 
 | Rede acessível pela VPN | `10.0.80.0/24` |
 | Gateway interno | `10.0.80.1` |
 
-!!! note "Evidência: status da conexão"
+<details>
+<summary><strong>Evidência: Status da Conexão do VPN por Computador Local </strong></summary>
 
-    Inserir o print do menu **Status > OpenVPN**, mostrando o usuário conectado e o serviço em estado **Up**.
+<p align="center"><img src="img/status_openvpn.png" alt="status da conexão do vpn" /></p>
 
-!!! note "Evidência: acesso seguro ao dashboard"
-
-    Inserir o print do navegador do computador local acessando `http://10.0.80.1` por meio da VPN.
+</details>
 
 ## 6. Boas Práticas e Segurança
 
@@ -181,17 +186,23 @@ Foram aplicadas as seguintes medidas de hardening:
 - Ativação do bloqueio de redes bogon na interface WAN.
 - Registro de logs nas regras de bloqueio relevantes.
 
-!!! note "Evidência: regras de firewall na WAN"
+<details>
+<summary><strong>Evidência: Regras de Firewall na WAN </strong></summary>
 
-    Inserir o print do menu **Firewall > Rules > WAN**, mostrando as regras de bloqueio e o ícone de log ativo.
+<p align="center"><img src="img/rules_wan.png" alt="rules wan" /></p>
+
+</details>
 
 ### 6.2 Monitoramento e Logs
 
 Os logs do pfSense foram utilizados para acompanhar tentativas de acesso bloqueadas em tempo real. Essa monitoração permite validar se as regras da interface WAN estão funcionando e facilita a identificação de tráfego suspeito.
 
-!!! note "Evidência: logs de bloqueio"
+<details>
+<summary><strong>Evidência: Logs de Bloqueio </strong></summary>
 
-    Inserir o print do menu **Status > System Logs > Firewall**, mostrando os bloqueios em vermelho.
+<p align="center"><img src="img/system_logs_firewall.png" alt="logs firewall" /></p>
+
+</details>
 
 ### 6.3 Priorização de Tráfego
 
@@ -204,9 +215,12 @@ Foi configurado o Traffic Shaper para priorizar o tráfego sensível da VPN e do
 | Nextcloud | Média/Alta | Preserva estabilidade para acesso a arquivos |
 | Demais fluxos | Normal | Evita competição indevida com serviços críticos |
 
-!!! note "Evidência: QoS"
+<details>
+<summary><strong>Evidência: Traffic Shaper</strong></summary>
 
-    Inserir o print do menu **Firewall > Traffic Shaper > By Interface**, mostrando a árvore de filas ou queues.
+<p align="center"><img src="img/traffic_shaper.png" alt="Traffic Shaper" /></p>
+
+</details>
 
 ## 7. Testes de Conectividade
 
@@ -219,24 +233,19 @@ Os testes foram separados entre acessos externos, realizados sem VPN, e acessos 
 | Acesso ao WordPress | `http://192.168.20.171` | Página do WordPress carregada |
 | Acesso ao Nextcloud | `http://192.168.20.171:8000` | Página do Nextcloud carregada |
 
-!!! note "Evidência: WordPress"
-
-    Inserir o print do navegador acessando `http://192.168.20.171`.
-
-!!! note "Evidência: Nextcloud"
-
-    Inserir o print do navegador acessando `http://192.168.20.171:8000`.
-
 ### 7.2 Testes Internos com VPN
 
-| Teste | Comando ou endereço | Resultado esperado |
+| Teste | Endereço | Resultado esperado |
 | --- | --- | --- |
-| Ping ao servidor interno | `ping 10.0.80.3` | Respostas ICMP pelo túnel VPN |
-| Acesso ao gateway pfSense | `http://10.0.80.1` | Dashboard acessível pela VPN |
+| Acesso ao WordPress | `http://10.0.80.3` | Página do WordPress carregada |
+| Acesso ao Nextcloud | `http://10.0.80.3:8000` | Página do Nextcloud carregada ||
 
-!!! note "Evidência: ping via túnel"
+<details>
+<summary><strong>Evidência: Acesso ao WordPress e NextCloud </strong></summary>
 
-    Inserir o print do terminal mostrando sucesso no `ping 10.0.80.3` através da VPN.
+<p align="center"><img src="img/acesso_wp_nc.png" alt="WordPress e NextCloud" /></p>
+
+</details>
 
 ## 8. Conclusão
 
@@ -250,7 +259,3 @@ Os principais pontos consolidados no projeto foram:
 - Bloqueio de tráfego administrativo e diagnóstico diretamente pela WAN.
 - Uso de logs para validar o comportamento das regras de segurança.
 - Aplicação de QoS para reduzir impacto de picos de uso.
-
-!!! question "Discussão do grupo"
-
-    Completar esta seção com os desafios encontrados durante a configuração, dificuldades de teste, problemas de conectividade e aprendizados obtidos ao longo do roteiro.
