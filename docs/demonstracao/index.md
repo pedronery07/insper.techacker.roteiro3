@@ -6,6 +6,4 @@ Testes conduzidos ao longo do vídeo:
 - Teste dos dois serviços acessíveis pela internet.
 - Mostra das regras e logs no PfSense.
 
-## Exemplo de vídeo
-
-<iframe width="100%" height="470" src="https://www.youtube.com/embed/3574AYQml8w" allowfullscreen></iframe>
+<iframe width="100%" height="470" src="https://www.youtube.com/embed/hfo2kTmSGdI" allowfullscreen></iframe>
