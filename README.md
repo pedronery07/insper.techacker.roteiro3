@@ -22,7 +22,7 @@ python3 -m pip install -r requirements.txt --upgrade
 
 ## Deployment
 
-O material utiliza o [mkdocs](https://www.mkdocs.org/) para gerar a documentação. Para visualizar a documentação, execute o comando:
+O material utiliza o [mkdocs](https://www.mkdocs.org/){:target="_blank"} para gerar a documentação. Para visualizar a documentação, execute o comando:
 
 ``` shell
 mkdocs serve -o
@@ -34,11 +34,4 @@ Para subir ao GitHub Pages, execute o comando:
 mkdocs gh-deploy
 ```
 
-
-## Notebooks
-
-Para subir notebooks no mkdocs, podemos utilizar a biblioteca do [mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter).
-
-Instalação, utilização e exemplos podem ser vistos na [documentação oficial](https://github.com/danielfrg/mkdocs-jupyter).
-
-O arquivo `mkdocs.yml` tem anotações nos nós modificados de exemplo.
+A documentação contida neste repositório se encontra neste [link](https://pedronery07.github.io/insper.techacker.roteiro3/){:target="_blank"}
